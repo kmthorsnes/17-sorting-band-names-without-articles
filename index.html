@@ -10,7 +10,7 @@
     body {
       margin: 0;
       font-family: sans-serif;
-      background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+      background: url("https://images.pexels.com/photos/211707/pexels-photo-211707.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
       background-size: cover;
       display: flex;
       align-items: center;
@@ -50,13 +50,11 @@ function strip(bandName) {
   return bandName.replace(/^(a |the |an )/i, '').trim();
 }
 
-const sortedBands = bands.sort(function(a, b){
-  if(a > b) {
-    return 1;
-  } else {
-    return -1;
-  }
-})
+const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+document.querySelector('#bands').innerHTML = sortedBands
+.map(band => `<li>${band}</li>`)
+.join('');
 
 console.table(sortedBands);
 
